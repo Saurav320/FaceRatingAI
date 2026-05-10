@@ -22,9 +22,9 @@ Advanced AI-powered Face Rating Web App built using Flask, DeepFace, TensorFlow 
 * CSS
 * JavaScript
 
-## 📸 Demo
+## 🌐 Live Demo
 
-Upload or capture a face image and the AI model will generate a smart face rating instantly.
+👉 https://huggingface.co/spaces/Saurav-12/Face-Rating
 
 ## 👨‍💻 Developer
 
