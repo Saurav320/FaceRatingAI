@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Face Rating AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+
+    <div class="bg"></div>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            🔥 Face Rating AI
+        </div>
+
+        <nav>
+
+            <a href="#home">Home</a>
+
+            <a href="#analysis">
+                AI Analysis
+            </a>
+
+            <a href="#rating">
+                AI Rating
+            </a>
+
+            <a href="#demo">
+                Demo
+            </a>
+
+            <a href="#footer">
+                Developer
+            </a>
+
+        </nav>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="hero"
+             id="home">
+
+        <h1>
+
+            AI Face Rating System
+
+        </h1>
+
+        <p>
+
+            Advanced Deep Learning Face Analysis
+            using Flask, DeepFace & TensorFlow
+
+        </p>
+
+    </section>
+
+    <!-- MAIN ANALYSIS -->
+
+    <div class="container"
+         id="analysis">
+
+        <div class="card">
+
+            <div class="cardInner">
+
+                <!-- LEFT -->
+
+                <div class="left">
+
+                    <!-- VIDEO -->
+
+                    <video id="video"
+                           autoplay
+                           playsinline></video>
+
+                    <!-- PREVIEW -->
+
+                    <img id="preview">
+
+                    <!-- CANVAS -->
+
+                    <canvas id="canvas"></canvas>
+
+                    <!-- BUTTONS -->
+
+                    <div class="buttons">
+
+                        <button id="openCamera">
+
+                            📷 Open Camera
+
+                        </button>
+
+                        <button id="closeCamera">
+
+                            ❌ Close Camera
+
+                        </button>
+
+                    </div>
+
+                    <div class="buttons">
+
+                        <button id="captureBtn">
+
+                            📸 Capture Face
+
+                        </button>
+
+                        <label class="uploadBtn">
+
+                            📂 Upload Image
+
+                            <input type="file"
+                                   id="imageInput"
+                                   accept="image/*">
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AI RESULT -->
+
+    <section class="ratingShowcase"
+             id="rating">
+
+        <div class="ratingCard">
+
+            <div class="aiIcon">
+
+                🤖✨
+
+            </div>
+
+            <h2>
+
+                AI Face Rating
+
+            </h2>
+
+            <div id="result">
+
+                Upload or capture image
+
+            </div>
+
+            <p class="resultText">
+
+                AI will analyze your face
+                and generate a smart rating.
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- DEMO -->
+
+    <section class="demoSection"
+             id="demo">
+
+        <h2>
+
+            🚀 How To Use
+
+        </h2>
+
+        <div class="demoCards">
+
+            <div class="demoCard">
+
+                <h3>📷 Open Camera</h3>
+
+                <p>
+
+                    Click Open Camera to start
+                    live face detection.
+
+                </p>
+
+            </div>
+
+            <div class="demoCard">
+
+                <h3>📸 Capture Face</h3>
+
+                <p>
+
+                    Capture your face and let
+                    AI analyze your rating.
+
+                </p>
+
+            </div>
+
+            <div class="demoCard">
+
+                <h3>📂 Upload Image</h3>
+
+                <p>
+
+                    Upload any image and
+                    instantly get AI results.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer id="footer">
+
+        <div class="footerContent">
+
+            <h2>
+
+                👨‍💻 About Developer
+
+            </h2>
+
+            <p>
+
+                Created by
+                <span>Saurav Kumar</span>
+
+            </p>
+
+            <p>
+
+                AI & Machine Learning Developer
+
+            </p>
+
+            <p>
+
+                Built with Flask, DeepFace,
+                TensorFlow and Deep Learning.
+
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- SCRIPT -->
+
+    <script>
+
+        const video =
+        document.getElementById("video");
+
+        const canvas =
+        document.getElementById("canvas");
+
+        const preview =
+        document.getElementById("preview");
+
+        const result =
+        document.getElementById("result");
+
+        const openCamera =
+        document.getElementById("openCamera");
+
+        const closeCamera =
+        document.getElementById("closeCamera");
+
+        const captureBtn =
+        document.getElementById("captureBtn");
+
+        const imageInput =
+        document.getElementById("imageInput");
+
+        let stream;
+
+        // OPEN CAMERA
+
+        openCamera.addEventListener(
+
+            "click",
+
+            async () => {
+
+                try{
+
+                    stream =
+                    await navigator
+                    .mediaDevices
+                    .getUserMedia({
+
+                        video:true
+
+                    });
+
+                    video.srcObject =
+                    stream;
+
+                }
+
+                catch(error){
+
+                    alert(
+                        "Camera access denied"
+                    );
+
+                }
+
+            }
+
+        );
+
+        // CLOSE CAMERA
+
+        closeCamera.addEventListener(
+
+            "click",
+
+            () => {
+
+                if(stream){
+
+                    stream
+                    .getTracks()
+                    .forEach(
+
+                        track => track.stop()
+
+                    );
+
+                }
+
+            }
+
+        );
+
+        // CAPTURE IMAGE
+
+        captureBtn.addEventListener(
+
+            "click",
+
+            async () => {
+
+                canvas.width =
+                video.videoWidth;
+
+                canvas.height =
+                video.videoHeight;
+
+                const ctx =
+                canvas.getContext("2d");
+
+                ctx.drawImage(
+
+                    video,
+
+                    0,
+
+                    0,
+
+                    canvas.width,
+
+                    canvas.height
+
+                );
+
+                const imageData =
+                canvas.toDataURL(
+                    "image/jpeg",
+                    0.5
+                );
+
+                preview.src =
+                imageData;
+
+                result.innerHTML =
+                "⏳ Analyzing...";
+
+                const formData =
+                new FormData();
+
+                formData.append(
+                    "image_data",
+                    imageData
+                );
+
+                const response =
+                await fetch(
+
+                    "/predict",
+
+                    {
+
+                        method:"POST",
+
+                        body:formData
+
+                    }
+
+                );
+
+                const data =
+                await response.json();
+
+                if(data.error){
+
+                    result.innerHTML =
+                    `❌ ${data.error}`;
+
+                }
+
+                else{
+
+                    result.innerHTML =
+                    `🔥 ${data.rating}/10`;
+
+                }
+
+            }
+
+        );
+
+        // IMAGE UPLOAD
+
+        imageInput.addEventListener(
+
+            "change",
+
+            async (e) => {
+
+                const file =
+                e.target.files[0];
+
+                if(!file) return;
+
+                preview.src =
+                URL.createObjectURL(file);
+
+                result.innerHTML =
+                "⏳ Analyzing...";
+
+                const formData =
+                new FormData();
+
+                formData.append(
+                    "image",
+                    file
+                );
+
+                const response =
+                await fetch(
+
+                    "/predict",
+
+                    {
+
+                        method:"POST",
+
+                        body:formData
+
+                    }
+
+                );
+
+                const data =
+                await response.json();
+
+                if(data.error){
+
+                    result.innerHTML =
+                    `❌ ${data.error}`;
+
+                }
+
+                else{
+
+                    result.innerHTML =
+                    `🔥 ${data.rating}/10`;
+
+                }
+
+            }
+
+        );
+
+    </script>
+
+</body>
+
+</html>

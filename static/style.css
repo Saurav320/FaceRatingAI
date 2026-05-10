@@ -1,0 +1,623 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+html{
+    scroll-behavior:smooth;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =========================
+BACKGROUND
+========================= */
+
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+
+    background:
+    radial-gradient(circle at top left,#6c63ff33,transparent 25%),
+    radial-gradient(circle at bottom right,#00f0ff33,transparent 25%),
+    #050816;
+}
+
+/* =========================
+HEADER
+========================= */
+
+header{
+    width:100%;
+    padding:18px 8%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    position:sticky;
+    top:0;
+
+    backdrop-filter:blur(15px);
+
+    background:rgba(255,255,255,0.04);
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    z-index:100;
+}
+
+.logo{
+    font-size:1.5rem;
+    font-weight:700;
+
+    background:linear-gradient(
+        90deg,
+        #00f0ff,
+        #6c63ff
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    color:#ccc;
+    text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#00f0ff;
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+    min-height:45vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px 20px;
+}
+
+.hero h1{
+    font-size:4rem;
+
+    background:linear-gradient(
+        90deg,
+        #00f0ff,
+        #6c63ff
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    color:#bbb;
+    margin-top:15px;
+    max-width:700px;
+    line-height:1.8;
+}
+
+/* =========================
+MAIN CONTAINER
+========================= */
+
+.container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    padding:40px 20px;
+}
+
+/* =========================
+CARD
+========================= */
+
+.card{
+    width:100%;
+    max-width:1200px;
+
+    position:relative;
+
+    border-radius:30px;
+
+    padding:3px;
+
+    background:linear-gradient(
+        135deg,
+        #00f0ff,
+        #6c63ff,
+        #00f0ff
+    );
+
+    background-size:300% 300%;
+
+    animation:borderGlow 6s linear infinite;
+}
+
+/* =========================
+ANIMATED BORDER
+========================= */
+
+@keyframes borderGlow{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+
+}
+
+/* =========================
+INNER CARD
+========================= */
+
+.cardInner{
+
+    width:100%;
+
+    background:#0b1020;
+
+    border-radius:28px;
+
+    padding:25px;
+
+    backdrop-filter:blur(20px);
+
+    overflow:hidden;
+}
+
+/* =========================
+LEFT
+========================= */
+
+.left{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+/* =========================
+VIDEO + IMAGE
+========================= */
+
+video,
+#preview{
+
+    width:100%;
+
+    height:520px;
+
+    object-fit:cover;
+
+    border-radius:22px;
+
+    background:#000;
+
+    border:2px solid rgba(255,255,255,0.08);
+
+    transition:.4s;
+}
+
+video:hover,
+#preview:hover{
+
+    transform:scale(1.01);
+
+    box-shadow:
+    0 0 40px rgba(0,240,255,0.25);
+}
+
+canvas{
+    display:none;
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+button,
+.uploadBtn{
+
+    flex:1;
+
+    min-width:180px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+        135deg,
+        #00f0ff,
+        #6c63ff
+    );
+
+    color:white;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+button:hover,
+.uploadBtn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 0 30px rgba(0,240,255,0.45);
+}
+
+.uploadBtn{
+    text-align:center;
+}
+
+.uploadBtn input{
+    display:none;
+}
+
+/* =========================
+AI RATING
+========================= */
+
+.ratingShowcase{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:20px;
+}
+
+.ratingCard{
+
+    width:100%;
+
+    max-width:1200px;
+
+    padding:50px 30px;
+
+    text-align:center;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+    0 0 35px rgba(0,240,255,0.12);
+}
+
+.aiIcon{
+
+    font-size:4.5rem;
+
+    margin-bottom:20px;
+
+    animation:float 3s ease-in-out infinite;
+}
+
+.ratingCard h2{
+
+    font-size:2.7rem;
+
+    margin-bottom:25px;
+
+    background:linear-gradient(
+        90deg,
+        #00f0ff,
+        #6c63ff
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+}
+
+#result{
+
+    font-size:4rem;
+
+    font-weight:700;
+
+    color:#00f0ff;
+
+    margin-bottom:20px;
+
+    text-shadow:
+    0 0 20px rgba(0,240,255,0.35);
+}
+
+.resultText{
+
+    color:#bbb;
+
+    max-width:700px;
+
+    margin:auto;
+
+    line-height:1.9;
+
+    font-size:1.05rem;
+}
+
+/* =========================
+FLOAT ANIMATION
+========================= */
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+/* =========================
+DEMO SECTION
+========================= */
+
+.demoSection{
+    padding:90px 20px;
+    text-align:center;
+}
+
+.demoSection h2{
+    margin-bottom:55px;
+    font-size:2.7rem;
+}
+
+.demoCards{
+    display:flex;
+    gap:25px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.demoCard{
+
+    width:330px;
+
+    padding:35px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    transition:.4s;
+}
+
+.demoCard:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 0 35px rgba(0,240,255,0.22);
+}
+
+.demoCard h3{
+    margin-bottom:18px;
+    font-size:1.3rem;
+}
+
+.demoCard p{
+    color:#bbb;
+    line-height:1.8;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+    padding:70px 20px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,0.03);
+
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.footerContent h2{
+    margin-bottom:25px;
+}
+
+.footerContent p{
+    color:#bbb;
+    line-height:1.9;
+}
+
+.footerContent span{
+    color:#00f0ff;
+    font-weight:600;
+}
+
+/* =========================
+MOBILE RESPONSIVE
+========================= */
+
+@media(max-width:950px){
+
+    header{
+
+        padding:15px 20px;
+    }
+
+    nav{
+        display:none;
+    }
+
+    .hero{
+
+        min-height:35vh;
+
+        padding:30px 15px;
+    }
+
+    .hero h1{
+
+        font-size:2.3rem;
+
+        line-height:1.3;
+    }
+
+    .hero p{
+
+        font-size:.95rem;
+
+        line-height:1.7;
+    }
+
+    .container{
+
+        padding:20px 12px;
+    }
+
+    .card{
+
+        border-radius:24px;
+    }
+
+    .cardInner{
+
+        padding:15px;
+    }
+
+    video,
+    #preview{
+
+        height:260px;
+
+        border-radius:18px;
+    }
+
+    .buttons{
+
+        flex-direction:column;
+    }
+
+    button,
+    .uploadBtn{
+
+        width:100%;
+
+        min-width:100%;
+
+        padding:15px;
+
+        font-size:.95rem;
+    }
+
+    .ratingShowcase{
+
+        padding:15px;
+    }
+
+    .ratingCard{
+
+        padding:35px 20px;
+    }
+
+    .aiIcon{
+
+        font-size:3rem;
+    }
+
+    .ratingCard h2{
+
+        font-size:1.8rem;
+    }
+
+    #result{
+
+        font-size:2.5rem;
+    }
+
+    .resultText{
+
+        font-size:.95rem;
+    }
+
+    .demoSection{
+
+        padding:60px 15px;
+    }
+
+    .demoSection h2{
+
+        font-size:2rem;
+    }
+
+    .demoCard{
+
+        width:100%;
+
+        padding:25px;
+    }
+
+    footer{
+
+        padding:50px 20px;
+    }
+
+}
